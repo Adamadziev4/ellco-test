@@ -1,0 +1,21 @@
+* {
+  box-sizing: border-box;
+}
+
+button,
+select {
+  padding: 5px;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+select {
+  background-color: rgb(240, 240, 240);
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}

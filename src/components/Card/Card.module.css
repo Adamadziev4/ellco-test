@@ -1,0 +1,102 @@
+.card {
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr 0.85fr;
+  grid-gap: 20px;
+  width: 400px;
+  padding: 15px;
+  border: 1px solid black;
+  border-radius: 15px;
+  font-size: 18px;
+  box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.1);
+}
+
+.card.hide {
+  grid-template-columns: 1fr;
+}
+
+.cardData {
+  display: grid;
+  grid-gap: 20px;
+}
+
+.cardData.hide {
+  visibility: hidden;
+}
+
+.editCard {
+  display: grid;
+  grid-gap: 15px;
+}
+
+.editCard.hide {
+  visibility: hidden;
+}
+
+.editMode {
+  display: grid;
+}
+
+.editCard input {
+  font-size: 18px;
+  font-weight: 300;
+  outline: none;
+  /* height: 40px; */
+}
+
+.resetSaveBtns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.resetBtn {
+  font-size: 14px;
+  border: none;
+  color: white;
+  background-color: rgb(255, 0, 0);
+  /* height: 40px; */
+}
+
+.resetBtn:hover {
+  background-color: rgb(247, 56, 56);
+}
+
+.saveBtn {
+  color: white;
+  border: none;
+  background-color: rgb(0, 173, 0);
+  /* height: 40px; */
+}
+
+.saveBtn:hover {
+  background-color: rgb(1, 192, 1);
+}
+
+.enoughBtn:hover {
+  background-color: rgb(245, 245, 245);
+}
+
+.editDataBtn,
+.deleteCardBtn {
+  margin-top: 10px;
+  width: 75%;
+  height: 40px;
+  justify-self: center;
+}
+
+.deleteCardBtn {
+  height: 50px;
+}
+
+.hideDeleteBtns {
+  display: grid;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.hideDeleteBtns button {
+  padding: 2px;
+  border: none;
+  font-size: 16px;
+}

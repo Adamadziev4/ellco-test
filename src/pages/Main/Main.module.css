@@ -1,0 +1,26 @@
+.main {
+  margin-top: 15px;
+  display: grid;
+  justify-content: center;
+  grid-gap: 25px;
+}
+
+.getDataBtn {
+  display: flex;
+  justify-content: center;
+}
+
+.getDataBtn button {
+  padding: 15px 20px;
+  border-radius: 10px;
+  font-size: 14px;
+  color: white;
+  background-color: rgb(32, 193, 32);
+}
+
+.usersCards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-content: center;
+  grid-gap: 50px;
+}
