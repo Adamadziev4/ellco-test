@@ -11,7 +11,7 @@ export const Main: React.FC = () => {
     const res = await fetch("https://63e27036ad0093bf29cff6e6.mockapi.io/Data");
     const json: IUser[] = await res.json();
 
-    const data = await json.map((userData) => {
+    const data = json.map((userData) => {
       return {
         ...userData,
         id: Number(userData.id),
@@ -19,12 +19,13 @@ export const Main: React.FC = () => {
     });
 
     localStorage.setItem("UsersData", JSON.stringify(data));
-    setUsers(data);
-  };
 
-  const usersDataJson = localStorage.getItem("UsersData");
-  const usersData: IUser[] =
-    usersDataJson !== null && JSON.parse(usersDataJson);
+    const usersDataJson = localStorage.getItem("UsersData");
+    const usersData: IUser[] =
+      usersDataJson !== null && JSON.parse(usersDataJson);
+
+    setUsers(usersData);
+  };
 
   React.useEffect(() => {
     getUsersData();
@@ -36,12 +37,12 @@ export const Main: React.FC = () => {
         <button>Получить новые данные</button>
       </div>
       <div className={styles.usersCards}>
-        {usersData &&
-          usersData.map((userData, i) => (
+        {users &&
+          users.map((userData, i) => (
             <Card
               key={i}
               userData={userData}
-              usersData={usersData}
+              usersData={users}
               setUsers={setUsers}
             />
           ))}

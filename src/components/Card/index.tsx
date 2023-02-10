@@ -25,6 +25,15 @@ export const Card: React.FC<CardProps> = ({
   const [choosenSelect, setChooseSelect] =
     React.useState<SelectOptions>("name"); // Выбранный select
 
+  const selectOptions: SelectOptions[] = [
+    "name",
+    "surname",
+    "age",
+    "hobbies",
+    "work",
+    "phone",
+  ];
+
   const onChangeSelect = (value: string) => {
     (value === "name" ||
       value === "surname" ||
@@ -36,23 +45,23 @@ export const Card: React.FC<CardProps> = ({
   };
 
   const onChangeInputValue = (value: string) => {
-    setEditUserData((prev) => {
-      return {
-        ...prev,
-        [choosenSelect]: choosenSelect === "hobbies" ? value.split(",") : value,
-      };
-    });
-  };
+    const newUserData = {
+      ...editUserData,
+      [choosenSelect]: choosenSelect === "hobbies" ? value.split(",") : value,
+    };
 
-  const onClickSaveData = () => {
+    setEditUserData(newUserData);
+
     const newUsersData = usersData.map((user) => {
       if (user.id !== userData.id) return user;
 
-      return editUserData;
+      return newUserData;
     });
 
     localStorage.setItem("UsersData", JSON.stringify(newUsersData));
+  };
 
+  const onClickSaveData = () => {
     fetch(
       `https://63e27036ad0093bf29cff6e6.mockapi.io/Data/${editUserData.id}`,
       {
@@ -66,6 +75,12 @@ export const Card: React.FC<CardProps> = ({
 
     setIsEditMode(false);
     setEditUserData(editUserData);
+  };
+
+  const onClickResetData = () => {
+    localStorage.setItem("UsersData", JSON.stringify(usersData));
+
+    setEditUserData(findUserData!);
   };
 
   const onClickDeleteCard = () => {
@@ -84,15 +99,6 @@ export const Card: React.FC<CardProps> = ({
     localStorage.setItem("UsersData", JSON.stringify(newUsersData));
     setUsers(newUsersData);
   };
-
-  const selectOptions: SelectOptions[] = [
-    "name",
-    "surname",
-    "age",
-    "hobbies",
-    "work",
-    "phone",
-  ];
 
   return (
     <>
@@ -152,7 +158,7 @@ export const Card: React.FC<CardProps> = ({
               <div className={styles.resetSaveBtns}>
                 {/* Сбрасываем изменения */}
                 <button
-                  onClick={() => setEditUserData(findUserData!)}
+                  onClick={() => onClickResetData()}
                   className={styles.resetBtn}
                 >
                   Сбросить
